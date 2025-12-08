@@ -1,0 +1,198 @@
+---
+theme: default
+title: nf-core/mag v5
+class: text-center
+drawings:
+  persist: false
+transition: slide-left
+mdc: true
+accentColor: "#2ca597ff"
+layout: cover
+logo: ./images/mag_logo_mascot_only.svg
+---
+
+<div class="text-center space-y-2">
+  <div><img src="./images/mag_logo_mascot_dark.svg" alt="nf-core" style="height: 10rem; display: inline-block;" /></div>
+</div>
+
+<div class="mt-10">
+
+**Diego Alvarez S. | [<carbon-logo-github class="inline-block w-4 h-4 mb-0.75" /> dialvarezs](https://github.com/dialvarezs)**
+
+</div>
+
+<div class="mt-12">
+
+10.12.2025
+
+</div>
+
+<!--
+-->
+
+---
+transition: slide-left
+---
+
+# Metagenome Assembly & Binning
+
+<div class="mt-24 flex justify-center">
+<img src="./images/binning.svg" style="width: 85%" />
+</div>
+
+<!--
+-->
+
+---
+layout: full
+transition: slide-left
+---
+
+# Current Workflow (v5.1)
+
+<div class="mt--15 flex justify-center">
+<img src="./images/mag_metromap_light.svg" style="width: 82%" />
+</div>
+
+<!--
+-->
+
+---
+layout: full
+transition: slide-left
+---
+
+# nf-core/mag v5.1 - Preprocessing
+
+<div class="flex items-center justify-center h-full">
+  <div style="width: 75%; height: 420px; overflow: hidden; position: relative;">
+    <img src="./images/mag_metromap_light.svg" style="position: absolute; top: -130px; left: 50%; transform: translateX(-25%) scale(1); transform-origin: top center; max-width: none;" />
+  </div>
+</div>
+
+<!--
+-->
+
+---
+layout: full
+transition: slide-left
+---
+
+# nf-core/mag v5.1 - Assembly and Annotation
+
+<div class="flex items-center justify-center h-full">
+  <div style="width: 90%; height: 310px; overflow: hidden; position: relative;">
+    <img src="./images/mag_metromap_light.svg" style="position: absolute; top: -190px; left: 90%; transform: translateX(-89%) scale(1); transform-origin: top center; max-width: none;" />
+  </div>
+</div>
+
+<!--
+-->
+
+---
+layout: full
+transition: slide-left
+---
+
+# nf-core/mag v5.1 - Binning and Refinement
+
+<div class="flex items-center justify-center h-full">
+  <div style="width: 80%; height: 300px; overflow: hidden; position: relative;">
+    <img src="./images/mag_metromap_light.svg" style="position: absolute; top: -600px; left: 90%; transform: translateX(-45%) scale(1); transform-origin: top center; max-width: none;" />
+  </div>
+</div>
+
+<!--
+-->
+
+---
+layout: full
+transition: slide-left
+---
+
+# nf-core/mag v5.1 - Bin QC and Taxonomy
+
+<div class="flex items-center justify-center h-full">
+  <div style="width: 27%; height: 450px; overflow: hidden; position: relative;">
+    <img src="./images/mag_metromap_light.svg" style="position: absolute; top: -420px; left: 50%; transform: translateX(-59.4%) scale(0.8); transform-origin: top center; max-width: none;" />
+  </div>
+</div>
+
+<!--
+-->
+
+---
+transition: slide-left
+---
+
+# How to run nf-core/mag v5.1.0?
+
+```bash
+nextflow run nf-core/mag -r 5.1.0 \
+  -profile <docker/singularity/.../institute> \
+  --input samplesheet.csv \
+  --outdir results/
+```
+
+Mixed short + long read samplesheet
+
+```csv
+sample,group,short_reads_1,short_reads_2,long_reads,short_reads_platform,long_reads_platform
+sample1,0,data/sample1_R1.fastq.gz,data/sample1_R2.fastq.gz,data/sample1.fastq.gz,ILLUMINA,OXFORD_NANOPORE
+sample2,0,data/sample2_R1.fastq.gz,data/sample2_R2.fastq.gz,data/sample2.fastq.gz,ILLUMINA,OXFORD_NANOPORE
+sample3,1,data/sample3_R1.fastq.gz,data/sample3_R2.fastq.gz,,ILLUMINA,
+```
+
+Long read only, merging runs
+```csv
+sample,run,group,long_reads,long_reads_platform
+sample1,1,0,data/sample1a.fastq.gz,OXFORD_NANOPORE
+sample1,2,0,data/sample1b.fastq.gz,OXFORD_NANOPORE
+sample2,0,0,data/sample2.fastq.gz,OXFORD_NANOPORE
+sample3,1,0,data/sample3.fastq.gz,OXFORD_NANOPORE
+```
+
+<!--
+-->
+
+
+---
+layout: center
+class: text-center
+---
+
+<div>
+<img src="./images/mag_logo_mascot_only.svg" alt="nf-core" style="height: 8rem; display: inline-block;" />
+</div>
+
+# Thank you!
+
+<div class="mt-12 space-y-8">
+
+<div class="text-xl opacity-80">
+Questions? Suggestions? Issues?
+</div>
+
+<div class="flex justify-center gap-12 text-lg">
+
+<div>
+<carbon-logo-github class="text-4xl mb-2" />
+<div class="font-bold">GitHub</div>
+<a href="https://github.com/nf-core/mag" target="_blank" class="text-teal-600 dark:text-teal-400 hover:underline">nf-core/mag</a>
+</div>
+
+<div>
+<carbon-chat class="text-4xl mb-2" />
+<div class="font-bold">Slack</div>
+<a href="https://nfcore.slack.com/channels/mag" target="_blank" class="text-teal-600 dark:text-teal-400 hover:underline">#mag</a>
+</div>
+
+<div>
+<carbon-document class="text-4xl mb-2" />
+<div class="font-bold">Documentation</div>
+<a href="https://nf-co.re/mag" target="_blank" class="text-teal-600 dark:text-teal-400 hover:underline">nf-co.re/mag</a>
+</div>
+
+</div>
+
+</div>
