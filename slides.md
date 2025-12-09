@@ -4,7 +4,8 @@ title: Introduction to nf-core/mag
 class: text-center
 drawings:
   persist: false
-transition: slide-left
+defaults:
+  transition: slide-left
 mdc: true
 accentColor: "#2daa66"
 layout: cover
@@ -25,6 +26,21 @@ logo: ./images/mag_logo_mascot_dark.svg
 
 <!--
 -->
+
+---
+transition: slide-left
+---
+
+# Scope
+
+
+
+---
+layout: section
+transition: slide-left
+---
+
+# Context
 
 ---
 transition: slide-left

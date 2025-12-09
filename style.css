@@ -10,14 +10,14 @@ h6 {
   color: var(--slidev-theme-accent, #2daa66) !important;
 }
 
-/* Logo watermark on each slide */
-.slidev-page:not(.slidev-page-cover):not(.slidev-page-center)::before {
+/* Subtle logo watermark on each slide */
+.slidev-layout:not(.cover):not(.center)::before {
   content: '';
   position: absolute;
   top: 2rem;
   right: 3rem;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   background-image: url('/images/mag_logo_mascot_only.svg');
   background-size: contain;
   background-repeat: no-repeat;
