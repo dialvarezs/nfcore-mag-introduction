@@ -5,11 +5,6 @@ const props = defineProps({
     type: String,
     default: './images/mag_logo_mascot_light.png'
   },
-  // Institutional logos (top right)
-  institutionalLogos: {
-    type: Array as () => string[],
-    default: () => []
-  },
   // Accent color for highlights
   accentColor: {
     type: String,
@@ -20,80 +15,50 @@ const props = defineProps({
 
 <template>
   <div class="slidev-layout cover relative h-full w-full overflow-hidden bg-gray-950">
-    <!-- Animated Background Pattern -->
-    <div class="absolute inset-0 opacity-10">
-      <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-      <div class="absolute top-0 -right-4 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-      <div class="absolute -bottom-8 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+    <!-- Radial gradient overlays for depth -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-20 blur-3xl" :style="{ background: `radial-gradient(circle, ${accentColor}, transparent)` }"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 rounded-full opacity-15 blur-3xl" :style="{ background: `radial-gradient(circle, ${accentColor}, transparent)` }"></div>
+    
+    <!-- Subtle geometric pattern -->
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, rgb(255 255 255) 1px, transparent 0); background-size: 40px 40px;"></div>
+    
+    <!-- Accent corner elements -->
+    <div class="absolute top-0 left-0 w-32 h-32 opacity-30">
+      <div class="absolute top-0 left-0 w-full h-1" :style="{ background: `linear-gradient(to right, ${accentColor}, transparent)` }"></div>
+      <div class="absolute top-0 left-0 w-1 h-full" :style="{ background: `linear-gradient(to bottom, ${accentColor}, transparent)` }"></div>
     </div>
-
-    <!-- Institutional Logos - Top Right -->
-    <div v-if="institutionalLogos.length > 0" class="absolute top-6 right-8 flex gap-4 items-center z-10">
-      <img
-        v-for="(logoUrl, index) in institutionalLogos"
-        :key="index"
-        :src="logoUrl"
-        class="h-14 object-contain opacity-80"
-        alt="Institutional logo"
-      />
+    <div class="absolute bottom-0 right-0 w-32 h-32 opacity-30">
+      <div class="absolute bottom-0 right-0 w-full h-1" :style="{ background: `linear-gradient(to left, ${accentColor}, transparent)` }"></div>
+      <div class="absolute bottom-0 right-0 w-1 h-full" :style="{ background: `linear-gradient(to top, ${accentColor}, transparent)` }"></div>
     </div>
-
+    
     <!-- Main Content -->
-    <div class="relative h-full flex items-center justify-center">
-      <div class="grid grid-cols-[30%_70%] gap-8 w-full items-center">
-        <!-- Left: Main Logo with subtle rotation -->
-        <div class="flex items-center justify-end">
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-2xl"></div>
-            <img :src="logo" class="relative max-h-80 w-full object-contain filter drop-shadow-2xl" alt="Project logo" />
-          </div>
-        </div>
+    <div class="relative h-full flex flex-col items-center justify-between py-10 z-10 px-8">
+      
+      <!-- Top: Title -->
+      <div class="text-3xl text-gray-400 font-light tracking-wide drop-shadow-md">
+        Introduction to
+      </div>
 
-        <!-- Right: Content with modern card -->
-        <div class="flex flex-col justify-center space-y-8 pl-8">
-          <div class="relative text-white">
-            <!-- Accent bar -->
-            <div class="absolute top-0 bottom-0 w-1.5 rounded-full" :style="{ background: accentColor }"></div>
+      <div class="flex-grow flex items-center justify-center">
+         <img :src="logo" class="h-56 object-contain filter drop-shadow-xl" alt="Project logo" />
+      </div>
 
-            <div>
-              <slot />
-            </div>
-          </div>
+      <!-- Bottom: Content Box (Author/Date) - Less rounded -->
+      <div class="relative backdrop-blur-sm bg-gray-900/60 mt-4 p-2 rounded-lg border border-white/10 shadow-2xl max-w-2xl w-full text-center">
+        <!-- Top accent line -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 h-1 w-1/3 rounded-b-full shadow-[0_0_15px_rgba(36,148,89,0.8)]" :style="{ background: accentColor }"></div>
+        
+        <div class="space-y-4">
+          <slot />
         </div>
       </div>
-    </div>
 
-    <!-- Bottom decorative wave -->
-    <div class="absolute bottom-0 left-0 right-0 h-1 opacity-60" :style="{ background: `linear-gradient(to right, transparent, ${accentColor}, transparent)` }"></div>
+    </div>
   </div>
 </template>
 
 <style scoped>
-/* Animated blobs */
-@keyframes blob {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-}
-
-.animate-blob {
-  animation: blob 7s infinite;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
-}
-
 /* Text styling - Always dark mode with deep selectors */
 .slidev-layout.cover :deep(h1) {
   @apply text-5xl font-bold mb-6 leading-tight;

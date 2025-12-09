@@ -1,16 +1,27 @@
 /* Custom styles for nf-core/mag presentation */
 
 /* Apply accent color to all headings */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--slidev-theme-accent, #2ca597ff) !important;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--slidev-theme-accent, #2daa66) !important;
 }
 
-/* Ensure headings in different layouts also use accent color */
-.slidev-layout h1,
-.slidev-layout h2,
-.slidev-layout h3,
-.slidev-layout h4,
-.slidev-layout h5,
-.slidev-layout h6 {
-  color: var(--slidev-theme-accent, #2ca597ff) !important;
+/* Logo watermark on each slide */
+.slidev-page:not(.slidev-page-cover):not(.slidev-page-center)::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  width: 100px;
+  height: 100px;
+  background-image: url('/images/mag_logo_mascot_only.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 1;
 }
