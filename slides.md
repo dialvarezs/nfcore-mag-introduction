@@ -635,7 +635,7 @@ transition: slide-left
 
 You can find the complete list of parameters in https://nf-co.re/mag/5.3.0/parameters/.
 
-Parameters can be specified in the command line with `--parameter_name value`, or in a params file in JSON or YAML format, and passed by `--params-file path/to/params.json`.
+Parameters can be specified in the command line with `--parameter_name value`, or in a params file in JSON or YAML format, and passed by `-params-file path/to/params.json`.
 
 You can press the "Launch" button in the https://nf-co.re/mag/ website to customize the parameters in a user-friendly interface and generate a command line to run the pipeline.
 
