@@ -680,19 +680,41 @@ transition: slide-left
 
 # Practical session run
 
-Create a `params.json` file with the content from the web builder and run the pipeline:
+Create a `nf-params.json` file with the content from the web builder and run the pipeline:
 
 ```bash
 nextflow run nf-core/mag -profile docker -params-file params.json
 ```
 
-The run should take around 40 minutes.
+The run should take 40 minutes aproximately.
+
+<div class="mt-12"></div>
+
+As the pipeline runs, you will see:
+- `work/` directory: temporary files created during execution, where Nextflow executes each task
+- `.nextflow.log`: log file with detailed execution information
 
 <style>
 .slidev-layout pre {
   font-size: 0.9em !important;
 }
 </style>
+
+
+---
+transition: slide-left
+---
+
+# Pipeline output
+
+- `QC_shortreads/`: Quality control reports for short reads
+- `QC_longreads/`: Quality control reports for long reads
+- `Assembly/`: Assembled contigs from different assemblers
+- `GenomeBinning/`: Binning results from different binners
+- `Annotation/`: Functional annotation of MAGs
+- `Taxonomy/`: Taxonomic classification results
+- `multiqc/`: Aggregated quality control report
+- `pipeline_info/`: Pipeline execution information and reports 
 
 ---
 transition: slide-left
