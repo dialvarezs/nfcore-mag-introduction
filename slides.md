@@ -402,6 +402,67 @@ transition: slide-left
 transition: slide-left
 ---
 
+# Files we are going to use
+
+#### `/vol/volume/reference_databases`
+  
+Reference databases for all the exhibition. From here, we will use the CheckM2 database.
+
+#### `/vol/volume/sessions/nf-core_mag`
+Our working directory, contains the input files for the pipeline.
+
+Run your commands here!
+
+<div class="mt-15"></div>
+
+Now, change into the working directory:
+
+```bash
+cd /vol/volume/sessions/nf-core_mag
+```
+
+<style>
+.slidev-layout pre {
+  font-size: 0.9em !important;
+}
+</style>
+  
+---
+transition: slide-left
+---
+
+# Input files
+
+<div class="grid gap-8 mt-8" style="grid-template-columns: 1fr 1.5fr;">
+
+<div>
+
+<img src="./images/cami_dataset.png" style="width: 100%" />
+
+</div>
+
+<div class="flex items-center">
+
+<div>
+
+### CAMI II mouse gut simulated dataset
+
+1. **File explorer** - Navigate project files
+2. **File viewer / editor** - View and edit files
+3. **Terminal** - Run commands
+
+</div>
+
+</div>
+
+</div>
+
+
+
+---
+transition: slide-left
+---
+
 # Cleanup
 
 Before moving to the next session, let's ensure we have sufficient space on your VM's storage for the next pipeline
