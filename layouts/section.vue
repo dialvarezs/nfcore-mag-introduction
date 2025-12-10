@@ -8,7 +8,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="slidev-layout section w-full h-full flex flex-col justify-center items-center text-center p-8 relative overflow-hidden bg-white">
+  <div class="slidev-layout section w-full h-full flex flex-col justify-center items-center text-center p-8 relative overflow-hidden">
     <!-- Subtle dot pattern background -->
     <div class="absolute inset-0 opacity-[0.04]" style="background-image: radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0); background-size: 32px 32px;" :style="{ color: accentColor }"></div>
     
@@ -29,8 +29,8 @@ const props = defineProps({
 <style scoped>
 /* Enhanced content styling with more visual flair */
 .section-content :deep(h1) {
-  font-size: 4.5rem;
-  font-weight: 400;
+  font-size: 3rem;
+  font-weight: 300;
   color: v-bind(accentColor);
   letter-spacing: -0.03em;
   margin-bottom: 1.5rem;
@@ -46,7 +46,7 @@ const props = defineProps({
   left: 50%;
   transform: translateX(-50%);
   width: 70%;
-  height: 3px;
+  height: 2px;
   background: v-bind(accentColor);
   opacity: 70%;
   border-radius: 2px;
@@ -64,5 +64,10 @@ const props = defineProps({
   font-size: 1.25rem;
   color: #4a5568;
   line-height: 1.8;
+  margin-top: 0;
+}
+
+.dark .section-content :deep(p) {
+  color: #cbd5e0;
 }
 </style>

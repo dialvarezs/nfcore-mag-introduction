@@ -1,4 +1,24 @@
-/* Custom styles for nf-core/mag presentation */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap');
+
+/* Global typography */
+body,
+.slidev-layout {
+  font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+
+/* Global background colors */
+.slidev-layout {
+  background-color: #f8f9fa;
+  /* Very light gray for light mode */
+}
+
+html.dark .slidev-layout {
+  background-color: #131823;
+  /* Dark bluish-gray for dark mode */
+}
+
 
 /* Apply accent color to all headings */
 h1,
@@ -7,7 +27,9 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--slidev-theme-accent, #2daa66) !important;
+  font-weight: 300 !important;
 }
 
 /* Subtle logo watermark on each slide */
@@ -24,4 +46,9 @@ h6 {
   opacity: 0.3;
   pointer-events: none;
   z-index: 1;
+}
+
+.text-accent {
+  color: var(--slidev-theme-accent, #2daa66) !important;
+  font-weight: 600 !important;
 }

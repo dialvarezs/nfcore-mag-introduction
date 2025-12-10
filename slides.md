@@ -31,7 +31,12 @@ logo: ./images/mag_logo_mascot_dark.svg
 transition: slide-left
 ---
 
-# Scope
+# Table of Contents
+
+1. Background of metagenomic analysis
+2. Challenges when working with metagenomics
+3. How to configure and use nf-core/mag
+4. nf-core/mag output and how to use it
 
 
 
@@ -40,7 +45,16 @@ layout: section
 transition: slide-left
 ---
 
-# Context
+# Metagenomic Analysis
+
+---
+transition: slide-left
+---
+
+# What is metagenomics?
+
+Metagenomics is the study of the structure and function of <span class="text-accent">entire nucleotide sequences isolated and analyzed from all the organisms (typically microbes) in a bulk sample</span>.
+Metagenomics is often used to study a specific community of microorganisms, such as those residing on human skin, in the soil or in a water sample.
 
 ---
 transition: slide-left
