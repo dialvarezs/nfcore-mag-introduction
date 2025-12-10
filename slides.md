@@ -431,13 +431,76 @@ cd /vol/volume/sessions/nf-core_mag
 transition: slide-left
 ---
 
-# Input files
+# nf-core/mag inputs
 
-<div class="grid gap-8 mt-8" style="grid-template-columns: 1fr 1.5fr;">
+<div class="grid grid-cols-2 gap-12 mt-8">
 
 <div>
 
-<img src="./images/cami_dataset.png" style="width: 100%" />
+### Sequencing data
+
+**Raw reads** (entry point 1)
+- Short reads: single-end or paired-end
+- Long reads: PacBio or Nanopore
+- Hybrid: both short and long reads
+
+**Assembled contigs** (entry point 2)
+- Pre-assembled sequences
+- Skip assembly step
+- Faster if you already have assemblies
+
+</div>
+
+<div>
+
+### Reference databases
+
+nf-core/mag can **download automatically**, but recommended to pre-download:
+
+- **GTDB** - Taxonomic classification (large!)
+- **CheckM2** - MAG quality assessment
+- **BUSCO** - Genome completeness
+- **CAT/BAT** - Taxonomic annotation
+
+Pre-downloading saves time for multiple runs, and prevent interruption of the pipeline due to download issues.
+
+</div>
+
+</div>
+
+---
+transition: slide-left
+---
+
+# Practical session data
+
+<div class="grid gap-8 mt-8" style="grid-template-columns: 1.3fr 1fr;">
+
+<div>
+
+### CAMI II mouse gut simulated dataset
+
+- First 3 samples
+- Contigs + long reads
+
+```
+input/
+├── 2018.02.13_14.02.01_sample_0
+│   ├── contigs
+│   │   └── anonymous_gsa.fasta.gz
+│   └── reads
+│       └── anonymous_reads.fq.gz
+├── 2018.02.13_14.02.01_sample_1
+│   ├── contigs
+│   │   └── anonymous_gsa.fasta.gz
+│   └── reads
+│       └── anonymous_reads.fq.gz
+└── 2018.02.13_14.02.01_sample_2
+    ├── contigs
+    │   └── anonymous_gsa.fasta.gz
+    └── reads
+        └── anonymous_reads.fq.gz
+```
 
 </div>
 
@@ -445,11 +508,8 @@ transition: slide-left
 
 <div>
 
-### CAMI II mouse gut simulated dataset
+<img src="./images/cami_dataset.png" style="width: 90%" />
 
-1. **File explorer** - Navigate project files
-2. **File viewer / editor** - View and edit files
-3. **Terminal** - Run commands
 
 </div>
 
@@ -458,6 +518,181 @@ transition: slide-left
 </div>
 
 
+---
+transition: slide-left
+---
+
+# Samplesheet format
+
+<div class="grid grid-cols-2 gap-10 mt-8">
+
+<div>
+
+### Columns
+
+- **sample** - Sample ID
+- **run** - Sequencing run ID
+- **group** - Co-binning group
+- **short_reads_1/2** - Read paths or URLs
+- **long_reads** - Long read path or URL
+- **short/long_reads_platform** - Technology
+
+</div>
+
+<div>
+
+### Key points
+
+**Group**: Default = single assembly + co-binning
+
+**Platforms**: 
+- Short: `ILLUMINA`, `BGISEQ`, `ION_TORRENT`, etc.
+- Long: `OXFORD_NANOPORE`, `OXFORD_NANOPORE_HQ`, `PACBIO_SMRT`
+
+💡 Use `--coassemble_group` for co-assembly
+
+</div>
+
+</div>
+
+
+---
+transition: slide-left
+---
+
+# Samplesheet examples
+
+Mixed short/long reads
+```csv
+sample,group,short_reads_1,short_reads_2,long_reads,short_reads_platform,long_reads_platform
+sample1,0,data/sample1_R1.fastq.gz,data/sample1_R2.fastq.gz,data/sample1.fastq.gz,ILLUMINA,OXFORD_NANOPORE
+sample2,0,data/sample2_R1.fastq.gz,data/sample2_R2.fastq.gz,data/sample2.fastq.gz,ILLUMINA,OXFORD_NANOPORE
+sample3,1,data/sample3_R1.fastq.gz,data/sample3_R2.fastq.gz,,ILLUMINA,
+```
+
+Long reads only
+```csv
+sample,run,group,long_reads,long_reads_platform
+sample1,1,0,data/sample1A.fastq.gz,OXFORD_NANOPORE
+sample1,2,0,data/sample1B.fastq.gz,OXFORD_NANOPORE
+sample2,0,0,data/sample2.fastq.gz,OXFORD_NANOPORE
+sample3,1,0,data/sample3.fastq.gz,OXFORD_NANOPORE
+```
+
+
+---
+transition: slide-left
+---
+
+# Assembly samplesheet
+
+Only if you want to skip the assembly step
+
+**Must be consistent with the main samplesheet!**
+
+Possible assemblers: `MEGAHIT`, `SPAdes`, `SPAdesHybrid`, `Flye`, `MetaMDBG`
+
+```csv
+id,group,assembler,fasta
+group-0,0,MEGAHIT,MEGAHIT-group-0.contigs.fa.gz
+group-0,0,SPAdes,SPAdes-group-0.contigs.fasta.gz
+group-1,1,MEGAHIT,MEGAHIT-group-1.contigs.fa.gz
+group-1,1,SPAdes,SPAdes-group-1.contigs.fasta.gz
+```
+
+
+---
+transition: slide-left
+---
+
+# Running nf-core/mag
+
+Minimal command
+
+```bash
+nextflow run nf-core/mag -r 5.3.0 -profile docker --input input/samplesheet.csv --outdir output
+```
+
+- `-r 5.3.0`: Specific version (optional). If not provided will use latest, unless there is one available locally. You can update local available versions with `nextflow pull nf-core/mag`
+- `-profile docker`: Profile for execution environment (docker, singularity, conda, etc.)
+- `--input input/samplesheet.csv`: Path to samplesheet
+- `--outdir output`: Pipeline output directory
+
+**Note**: Option with one dash (`-`) are Nextflow options, while options with two dashes (`--`) are nf-core/mag parameters.
+
+<style>
+.slidev-layout pre {
+  font-size: 0.8em !important;
+}
+</style>
+
+
+---
+transition: slide-left
+---
+
+# nf-core/mag parameters
+
+You can find the complete list of parameters in https://nf-co.re/mag/5.3.0/parameters/.
+
+Parameters can be specified in the command line with `--parameter_name value`, or in a params file in JSON or YAML format, and passed by `--params-file path/to/params.json`.
+
+You can press the "Launch" button in the https://nf-co.re/mag/ website to customize the parameters in a user-friendly interface and generate a command line to run the pipeline.
+
+<div class="flex justify-center mt-4">
+<img src="./images/nfcore_launch.png" style="width: 70%">
+</div>
+
+---
+transition: slide-left
+---
+
+# Practical session parameters
+
+- `--input samplesheet.csv`
+- `--assembly_input assembly_samplesheet.csv`
+- `--outdir output`
+- `--skip_prodigal`
+- `--skip_prokka`
+- `--skip_maxbin2`
+- `--skip_concoct`
+- `--skip_comebin`
+- `--skip_metabinner`
+- `--skip_busco`
+- `--run_checkm2`
+- `--checkm2_db /vol/volume/reference_databases/checkm2/CheckM2_database/uniref100.KO.1.dmnd`
+- `--skip_gtdbtk`
+
+<style>
+.slidev-layout ul {
+  font-size: 0.9em !important;
+  line-height: 1.2 !important;
+}
+.slidev-layout li {
+  margin-bottom: 0.1rem !important;
+}
+</style>
+
+
+---
+transition: slide-left
+---
+
+# Practical session run
+
+Create a `params.json` file with the content from the web builder and run the pipeline:
+
+```bash
+nextflow run nf-core/mag -profile docker -params-file params.json
+```
+
+The run should take around 40 minutes.
+
+<style>
+.slidev-layout pre {
+  font-size: 0.9em !important;
+}
+</style>
 
 ---
 transition: slide-left
