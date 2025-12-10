@@ -709,8 +709,8 @@ transition: slide-left
 
 - `QC_shortreads/`: Quality control reports for short reads
 - `QC_longreads/`: Quality control reports for long reads
-- `Assembly/`: Assembled contigs from different assemblers
-- `GenomeBinning/`: Binning results from different binners
+- `Assembly/`: Assembled contigs from different assemblers and QC tools
+- `GenomeBinning/`: Binning results from different binners and QC tools
 - `Annotation/`: Functional annotation of MAGs
 - `Taxonomy/`: Taxonomic classification results
 - `multiqc/`: Aggregated quality control report
@@ -737,6 +737,52 @@ docker volumes prune -af
   font-size: 0.9em !important;
 }
 </style>
+
+---
+transition: slide-left
+---
+
+# Acknowledgements
+
+<div class="grid gap-8 mt-8" style="grid-template-columns: 1.2fr 1fr;">
+
+<div>
+
+### nf-core/mag maintainers
+
+**Current team**
+- James A. Fellows Yates
+- Jim Downie
+- Daniel Straub
+- Adam Rosenbaum
+
+**Previous maintainers**
+- Hadrien Gourlé
+- Sabrina Krakau
+
+Also thanks to all <span class="text-accent">74 contributors</span> who have helped improve nf-core/mag!
+
+</div>
+
+<div>
+
+### Speaker affiliation
+
+<div class="flex flex-col gap-6 mt-4">
+<img src="./images/logo_umag.svg" style="width: 140px;" />
+<img src="./images/logo_catg.svg" style="width: 100px;" />
+</div>
+
+<div class="mt-8 text-sm opacity-70">
+
+**Universidad de Magallanes**  
+
+</div>
+
+</div>
+
+</div>
+
 
 
 ---
