@@ -2,7 +2,7 @@
 const props = defineProps({
   accentColor: {
     type: String,
-    default: '#2daa66'
+    default: '#2dab67'
   }
 })
 </script>
@@ -16,8 +16,7 @@ const props = defineProps({
     <div class="absolute top-1/3 left-0 w-full h-px opacity-10" :style="{ background: `linear-gradient(to right, transparent, ${accentColor}, transparent)` }"></div>
     <div class="absolute bottom-1/3 left-0 w-full h-px opacity-10" :style="{ background: `linear-gradient(to right, transparent, ${accentColor}, transparent)` }"></div>
     
-    <!-- Footer bar (matching global-bottom) -->
-    <div class="absolute bottom-0 left-0 right-0 h-1 w-full" style="background: linear-gradient(to right, #1e7d4a, #2daa66, #3bc97a)"></div>
+    
     
     <!-- Content -->
     <div class="my-auto relative z-10 max-w-4xl section-content">

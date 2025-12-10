@@ -7,12 +7,12 @@ drawings:
 defaults:
   transition: slide-left
 mdc: true
-accentColor: "#2daa66"
+accentColor: "#2dab67"
 layout: cover
 logo: ./images/mag_logo_mascot_dark.svg
 ---
 
-<div class="mt-10">
+<div>
 
   **Diego Alvarez S. | [<carbon-logo-github class="inline-block w-4 h-4 mb-0.75" /> dialvarezs](https://github.com/dialvarezs)**
 
@@ -31,13 +31,72 @@ logo: ./images/mag_logo_mascot_dark.svg
 transition: slide-left
 ---
 
-# Table of Contents
+# Overview
 
-1. Background of metagenomic analysis
-2. Challenges when working with metagenomics
-3. How to configure and use nf-core/mag
-4. nf-core/mag output and how to use it
+<div class="toc-grid mt-12">
 
+<div class="toc-item">
+  <div class="toc-number">01</div>
+  <div class="toc-title">Metagenomic analysis background</div>
+</div>
+
+<div class="toc-item">
+  <div class="toc-number">02</div>
+  <div class="toc-title">Why should you use nf-core/mag?</div>
+</div>
+
+<div class="toc-item">
+  <div class="toc-number">03</div>
+  <div class="toc-title">How to configure and use nf-core/mag</div>
+</div>
+
+<div class="toc-item">
+  <div class="toc-number">04</div>
+  <div class="toc-title">nf-core/mag output and how to use it</div>
+</div>
+
+</div>
+
+<style>
+.toc-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.toc-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(45, 170, 102, 0.05);
+  border: 2px solid rgba(45, 170, 102, 0.2);
+  border-radius: 12px;
+}
+
+.dark .toc-item {
+  background: rgba(45, 170, 102, 0.08);
+  border-color: rgba(45, 170, 102, 0.25);
+}
+
+.toc-number {
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: #2dab67;
+  opacity: 0.6;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.toc-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: inherit;
+}
+</style>
 
 
 ---
@@ -54,29 +113,232 @@ transition: slide-left
 # What is metagenomics?
 
 Metagenomics is the study of the structure and function of <span class="text-accent">entire nucleotide sequences isolated and analyzed from all the organisms (typically microbes) in a bulk sample</span>.
+
 Metagenomics is often used to study a specific community of microorganisms, such as those residing on human skin, in the soil or in a water sample.
+
+<p class="text-xs text-gray">
+https://www.genome.gov/genetics-glossary/Metagenomics
+</p>
 
 ---
 transition: slide-left
 ---
 
-# Metagenome Assembly & Binning
+# Why metagenomics?
+
+<div class="grid grid-cols-2 gap-8 mt-8">
+
+<div>
+
+### Traditional microbiology limitations
+
+- Only ~1% of microbes are culturable
+- Slow and labor-intensive
+- Misses complex interactions
+- Biased towards abundant species
+
+</div>
+
+<div>
+
+### Metagenomics enables
+
+- Culture-independent analysis
+- Study entire communities
+- Discover novel organisms
+- Understand functional potential
+- Analyze unculturable microbes
+
+</div>
+
+</div>
+
+---
+transition: slide-left
+---
+
+# Shotgun metagenomics approaches
+
+<div class="grid grid-cols-2 gap-8 mt-12">
+
+<div>
+
+### Read-based profiling
+
+**Direct classification of reads against reference databases (Kraken, MetaPhlAn)**
+
+- Fast taxonomic and functional profiling
+- Limited to known organisms
+
+</div>
+
+<div>
+
+### Assembly-based (MAGs) 
+
+**Genome reconstruction from metagenomic data**
+
+- Recover novel organisms
+- Complete metabolic pathways
+- Strain-level resolution
+- Enables comparative genomics
+
+</div>
+
+</div>
+
+---
+transition: slide-left
+---
+
+# Shotgun metagenomics workflow
 
 <div class="mt-24 flex justify-center">
 <img src="./images/binning.svg" style="width: 85%" />
 </div>
 
-<!--
--->
+---
+transition: slide-left
+---
+
+# What are MAGs?
+
+<div class="mt-8">
+
+## Metagenome-Assembled Genomes (MAGs)
+
+Individual <span class="text-accent">draft genomes reconstructed from metagenomic data</span> by grouping (binning) assembled sequences that likely originated from the same organism.
+
+<div class="mt-8"></div>
+
+### What can you discover from MAGs?
+
+- **Taxonomy**: Identify novel species and strains
+- **Metabolic potential**: Predict functional capabilities
+- **Evolutionary insights**: Understand microbial evolution
+- **Biosynthetic pathways**: Discover new enzymes and compounds
+- **Ecological roles**: Understand community interactions
+- **Comparative genomics**: Study population-level variation
+
+</div>
+
+---
+transition: slide-left
+---
+
+# Metagenomics analysis is complex
+
+<div class="grid grid-cols-2 gap-12 mt-8">
+
+<div>
+
+### Computational complexity
+- Massive datasets (100s of GB)
+- High memory and CPU requirements
+
+<div class="mt-6"></div>
+
+### Workflow complexity
+- Many tools with different requirements
+- Which tools and parameters to use?
+- How to integrate them together?
+- Ensuring reproducibility
+
+</div>
+
+<div>
+
+### Biological complexity
+- Uneven species abundance
+- Strain variation within species
+- Horizontal gene transfer
+- Repetitive sequences
+
+<div class="mt-8"></div>
+
+### Technical challenges
+- Contamination (host, reagents)
+- Sequencing errors and biases
+- Incomplete assemblies
+- Chimeric contigs
+
+</div>
+
+</div>
+
+---
+transition: slide-left
+---
+
+# The solution: Standardized workflows
+
+<div class="mt-8">
+
+Pipelines <span class="text-accent">simplify the workflow</span>, allowing you to focus on biological questions
+
+<div class="mt-10"></div>
+
+### Benefits of established pipelines
+
+- **Reproducibility**: Consistent results across studies
+- **Best practices**: Incorporates validated methods and tools
+- **Efficiency**: Optimized resource management and parallelization
+- **Quality control**: Built-in validation and error checking
+- **Community support**: Well-documented and actively maintained
+
+</div>
+
+---
+layout: section
+transition: slide-left
+---
+
+# nf-core/mag
+
+---
+transition: slide-left
+---
+
+# nf-core/mag
+
+<div class="grid grid-cols-2 gap-12 mt-8">
+
+<div>
+
+<img src="./images/mag_logo_mascot_light.svg" style="width: 280px; margin-bottom: 2rem;">
+
+**Best-practice pipeline for assembly and binning of metagenomes**
+
+Built with Nextflow, part of the nf-core community
+
+</div>
+
+<div>
+
+### Key features
+
+**Flexible input**
+- Short reads, long reads, or hybrid
+- Start from raw reads or assembled contigs
+
+**Comprehensive analysis**
+- Quality control and preprocessing
+- Assembly and binning
+- MAG refinement and quality assessment
+- Taxonomic classification and annotation
+
+</div>
+
+</div>
 
 ---
 layout: full
 transition: slide-left
 ---
 
-# Current Workflow (v5.3)
+# nf-core/mag v5.3 workflow
 
-<div class="mt--15 flex justify-center">
+<div class="mt--18 flex justify-center">
 <img src="./images/mag_metromap_light.svg" style="width: 85%" />
 </div>
 
@@ -84,102 +346,57 @@ transition: slide-left
 -->
 
 ---
-layout: full
+layout: section
 transition: slide-left
 ---
 
-# nf-core/mag v5.1 - Preprocessing
+# Practical Session
 
-<div class="flex items-center justify-center h-full">
-  <div style="width: 75%; height: 420px; overflow: hidden; position: relative;">
-    <img src="./images/mag_metromap_light.svg" style="position: absolute; top: -130px; left: 50%; transform: translateX(-25%) scale(1); transform-origin: top center; max-width: none;" />
-  </div>
+---
+transition: slide-left
+---
+
+# Computational environment setup
+
+## To start
+
+- Please <span class="text-accent">open the link</span> of your personal deNBI VM
+- Login with your credentials
+- You should see a VS Code interface
+
+## Recommended
+
+- Open the nf-core/mag documentation in another tab: https://nf-co.re/mag
+
+---
+transition: slide-left
+---
+
+# VS Code interface
+
+<div class="grid gap-8 mt-8" style="grid-template-columns: 2fr 1fr;">
+
+<div>
+
+<img src="./images/vscode_interface.png" style="width: 100%" />
+
 </div>
 
-<!--
--->
+<div class="flex items-center">
 
----
-layout: full
-transition: slide-left
----
+<div>
 
-# nf-core/mag v5.1 - Assembly and Annotation
+### Main components
 
-<div class="flex items-center justify-center h-full">
-  <div style="width: 90%; height: 310px; overflow: hidden; position: relative;">
-    <img src="./images/mag_metromap_light.svg" style="position: absolute; top: -190px; left: 90%; transform: translateX(-89%) scale(1); transform-origin: top center; max-width: none;" />
-  </div>
+1. **File explorer** - Navigate project files
+2. **File viewer / editor** - View and edit files
+3. **Terminal** - Run commands
+
 </div>
 
-<!--
--->
-
----
-layout: full
-transition: slide-left
----
-
-# nf-core/mag v5.1 - Binning and Refinement
-
-<div class="flex items-center justify-center h-full">
-  <div style="width: 80%; height: 300px; overflow: hidden; position: relative;">
-    <img src="./images/mag_metromap_light.svg" style="position: absolute; top: -600px; left: 90%; transform: translateX(-45%) scale(1); transform-origin: top center; max-width: none;" />
-  </div>
 </div>
 
-<!--
--->
-
----
-layout: full
-transition: slide-left
----
-
-# nf-core/mag v5.1 - Bin QC and Taxonomy
-
-<div class="flex items-center justify-center h-full">
-  <div style="width: 27%; height: 450px; overflow: hidden; position: relative;">
-    <img src="./images/mag_metromap_light.svg" style="position: absolute; top: -420px; left: 50%; transform: translateX(-59.4%) scale(0.8); transform-origin: top center; max-width: none;" />
-  </div>
 </div>
-
-<!--
--->
-
----
-transition: slide-left
----
-
-# How to run nf-core/mag v5.1.0?
-
-```bash
-nextflow run nf-core/mag -r 5.1.0 \
-  -profile <docker/singularity/.../institute> \
-  --input samplesheet.csv \
-  --outdir results/
-```
-
-Mixed short + long read samplesheet
-
-```csv
-sample,group,short_reads_1,short_reads_2,long_reads,short_reads_platform,long_reads_platform
-sample1,0,data/sample1_R1.fastq.gz,data/sample1_R2.fastq.gz,data/sample1.fastq.gz,ILLUMINA,OXFORD_NANOPORE
-sample2,0,data/sample2_R1.fastq.gz,data/sample2_R2.fastq.gz,data/sample2.fastq.gz,ILLUMINA,OXFORD_NANOPORE
-sample3,1,data/sample3_R1.fastq.gz,data/sample3_R2.fastq.gz,,ILLUMINA,
-```
-
-Long read only, merging runs
-```csv
-sample,run,group,long_reads,long_reads_platform
-sample1,1,0,data/sample1a.fastq.gz,OXFORD_NANOPORE
-sample1,2,0,data/sample1b.fastq.gz,OXFORD_NANOPORE
-sample2,0,0,data/sample2.fastq.gz,OXFORD_NANOPORE
-sample3,1,0,data/sample3.fastq.gz,OXFORD_NANOPORE
-```
-
-<!--
--->
 
 ---
 transition: slide-left

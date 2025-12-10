@@ -1,26 +1,25 @@
-/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap');
 
-/* Global typography */
 body,
 .slidev-layout {
   font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
+.slidev-layout:not(.cover):not(.section) * {
+  opacity: 1 !important;
+}
 
-/* Global background colors */
-.slidev-layout {
+.slidev-layout:not(.cover) {
   background-color: #f8f9fa;
-  /* Very light gray for light mode */
+  color: #2d3748 !important;
 }
 
-html.dark .slidev-layout {
-  background-color: #131823;
-  /* Dark bluish-gray for dark mode */
+html.dark .slidev-layout:not(.cover) {
+  background-color: #151923;
+  color: #e2e8f0 !important;
 }
 
 
-/* Apply accent color to all headings */
 h1,
 h2,
 h3,
@@ -28,11 +27,20 @@ h4,
 h5,
 h6 {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: var(--slidev-theme-accent, #2daa66) !important;
+  color: var(--slidev-theme-accent, #2dab67) !important;
   font-weight: 300 !important;
 }
 
-/* Subtle logo watermark on each slide */
+h1 {
+  margin-bottom: 2rem !important;
+}
+
+h2,
+h3 {
+  margin-bottom: 0.5rem !important;
+}
+
+/* Logo watermark on each slide */
 .slidev-layout:not(.cover):not(.center)::before {
   content: '';
   position: absolute;
@@ -43,12 +51,12 @@ h6 {
   background-image: url('/images/mag_logo_mascot_only.svg');
   background-size: contain;
   background-repeat: no-repeat;
-  opacity: 0.3;
+  opacity: 0.5;
   pointer-events: none;
   z-index: 1;
 }
 
 .text-accent {
-  color: var(--slidev-theme-accent, #2daa66) !important;
+  color: var(--slidev-theme-accent, #2dab67) !important;
   font-weight: 600 !important;
 }
