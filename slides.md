@@ -652,6 +652,7 @@ transition: slide-left
 - `--input samplesheet.csv`
 - `--assembly_input assembly_samplesheet.csv`
 - `--outdir output`
+- `--skip_gtdbtk`
 - `--skip_prodigal`
 - `--skip_prokka`
 - `--skip_maxbin2`
@@ -661,7 +662,6 @@ transition: slide-left
 - `--skip_busco`
 - `--run_checkm2`
 - `--checkm2_db /vol/volume/reference_databases/checkm2/CheckM2_database/uniref100.KO.1.dmnd`
-- `--skip_gtdbtk`
 
 <style>
 .slidev-layout ul {
