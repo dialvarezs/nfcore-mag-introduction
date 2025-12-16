@@ -1,4 +1,4 @@
-# Slides for [Bytesize: nf-core/mag v5.0](https://nf-co.re/events/2025/bytesize_mag_v5)
+# nf-core/mag introduction slides
 
 To start the slide show:
 
